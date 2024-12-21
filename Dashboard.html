@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Search</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Pacifico&display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-image: url('All Asset/background.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+
+        .gradient-text {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.5rem;
+            background: linear-gradient(90deg, navy, purple, navy);
+            background-size: 200% 200%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            animation: gradient-animation 3s ease-in-out infinite;
+        }
+
+        @keyframes gradient-animation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .glass-header {
+    position: fixed;
+    top: 30px; /* Kurangi jarak dari atas */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 97%; /* Lebar lebih kecil */
+    padding: 0.5rem; /* Kurangi padding untuk membuatnya lebih ramping */
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(8px); /* Blur lebih sedikit */
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 12px; /* Kurangi radius */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Kurangi bayangan */
+    z-index: 10;
+}
+
+
+        main {
+            padding-top: 160px; /* Memberi jarak lebih besar agar konten tidak tertutup header */
+        }
+
+        input:focus {
+            border-color: rgb(15, 100, 156);
+            outline: none;
+        }
+
+        h2.fixed-title {
+        position: fixed;
+        top: 120px; /* Sesuaikan jarak sesuai kebutuhan */
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9;
+        background-color: rgba(255, 255, 255, 0.8); /* Warna latar belakang untuk keterbacaan */
+        padding: 5px 10px;
+        border-radius: 8px;
+        color: rgb(15, 100, 156); /* Sesuaikan warna */
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    #rekomendasi {
+    transition: opacity 0.3s ease-in-out; /* Transisi halus untuk hilang dan muncul */
+    opacity: 1; /* Default terlihat */
+    padding: 5px 20px; /* Padding dalam oval */
+    background-color: #2b60c4; /* Warna pink */
+    color: white; /* Warna teks putih */
+    border-radius: 9999px; /* Membuat oval */
+    display: inline-block; /* Agar membungkus teks */
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;  /* Pastikan elemen benar-benar tersembunyi */
+}
+
+
+    .scrollable-content {
+        margin-top: 160px; /* Beri jarak agar konten awal tidak tertutup header dan fixed title */
+    }
+
+    
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="container mx-auto p-4">
+        <header class="glass-header flex justify-between items-center">
+            <div class="flex items-center">
+                <img alt="Logo" class="mr-2" height="50" src="All Asset/Skillhub.png" width="100"/>
+            </div>
+            <div class="flex-grow mx-4 flex">
+                <input class="flex-grow p-2 border border-gray-300 rounded-l-full" placeholder="Cari Perusahaan..." type="text"/>
+                <button class="bg-blue-500 text-white px-4 rounded-r-full hover:bg-blue-600">Cari</button>
+            </div>
+            <div>
+                <span class="gradient-text">Bangun dan Wujudkan Mimpimu!</span>
+            </div>
+        </header>
+        <main>
+            <script src="js/Script.js"></script>
+            <h2 id="rekomendasi" class="text-2xl font-Arial font-bold mb-4">Rekomendasi:</h2>
+            <div id="recommendation-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                <a href="Pertamina.html" class="border border-blue-900 rounded-lg bg-white overflow-hidden hover:shadow-lg transform hover:scale-105 transition" style="border-width: 3px;">
+                    <img alt="Placeholder image for Company 1" class="w-full h-48 object-cover" src="Asset Company/PT Pertamina.jpeg"/>
+                    <div class="p-4">
+                        <div class="bg-blue-500 text-white text-center py-1 rounded-full mb-2">
+                            <h3 class="text-xl font-bold">PT Pertamina</h3>
+                        </div>
+                        <p class="text-center">Perusahaan minyak dan gas milik negara yang bergerak dalam eksplorasi, produksi, dan distribusi energi di Indonesia.</p>
+                        <p class="text-blue-500 text-center font-Arial mt-2">Jakarta, Indonesia (Jl. Medan Merdeka Timur No.1A, Gambir).</p>
+                    </div>
+                </a>
+                <a href="BCA.html" class="recommendation-item border border-blue-900 rounded-lg bg-white overflow-hidden hover:shadow-lg transform hover:scale-105 transition" style="border-width: 3px;">
+                    <img alt="Placeholder image for Company 2" class="w-full h-48 object-cover" src="Asset Company/PT Bank Central Asia.jpg"/>
+                    <div class="p-4">
+                        <div class="bg-blue-500 text-white text-center py-1 rounded-full mb-2">
+                            <h3 class="text-xl font-bold">PT Bank Central Asia</h3>
+                        </div>
+                        <p class="text-center">Bank swasta terbesar di Indonesia yang menawarkan berbagai layanan perbankan baik itu untuk individu maupun bisnis.</p>
+                        <p class="text-blue-500 text-center font-Arial mt-2">Jakarta, Indonesia (Menara BCA, Grand Indonesia, Jakarta Pusat).</p>
+                    </div>
+                </a>
+                <a href="Telkom.html" class="recommendation-item border border-blue-900 rounded-lg bg-white overflow-hidden hover:shadow-lg transform hover:scale-105 transition" style="border-width: 3px;">
+        <img alt="Placeholder image for Company 3" class="w-full h-48 object-cover" src="Asset Company/PT Telkom Indonesia.jpg"/>
+        <div class="p-4">
+            <div class="bg-blue-500 text-white text-center py-1 rounded-full mb-2">
+                <h3 class="text-xl font-bold">PT Telkom Indonesia</h3>
+            </div>
+            <p class="text-center">Perusahaan telekomunikasi milik negara yang khusus menyediakan sebuah layanan telekomunikasi dan jaringan di seluruh Indonesia.</p>
+            <p class="text-blue-500 text-center font-Arial mt-2">Bandung, Jawa Barat (Jl. Japati No.1, Bandung).</p>
+        </div>
+    </a>
+    <a href="Mandiri.html" class="recommendation-item border border-blue-900 rounded-lg bg-white overflow-hidden hover:shadow-lg transform hover:scale-105 transition" style="border-width: 3px;">
+        <img alt="Placeholder image for Company 3" class="w-full h-48 object-cover" src="Asset Company/PT Bank Mandiri.jpg"/>
+        <div class="p-4">
+            <div class="bg-blue-500 text-white text-center py-1 rounded-full mb-2">
+                <h3 class="text-xl font-bold">PT Bank Mandiri</h3>
+            </div>
+            <p class="text-center">Salah satu bank terbesar di Indonesia yang menawarkan sebuah layanan perbankan baik itu untuk komersial maupun investasi.</p>
+            <p class="text-blue-500 text-center font-Arial mt-2">Jakarta, Indonesia (Jl. Jend. Gatot Subroto Kav. 36-38, Jakarta).</p>
+        </div>
+    </a>
+    <a href="BRI.html" class="recommendation-item border border-blue-900 rounded-lg bg-white overflow-hidden hover:shadow-lg transform hover:scale-105 transition" style="border-width: 3px;">
+        <img alt="Placeholder image for Company 3" class="w-full h-48 object-cover" src="Asset Company/PT Bank Rakyat Indonesia.jpeg"/>
+        <div class="p-4">
+            <div class="bg-blue-500 text-white text-center py-1 rounded-full mb-2">
+                <h3 class="text-xl font-bold">PT Bank Rakyat Indonesia</h3>
+            </div>
+            <p class="text-center">Bank milik negara yang mana hanya fokus pada sebuah layanan perbankan mikro, kecil, maupun layanan perbankan menengah.</p>
+            <p class="text-blue-500 text-center font-Arial mt-2">Jakarta, Indonesia (Jl. Jend. Sudirman No.44-46, Jakarta).</p>
+        </div>
+    </a>
+    <a href="Astra.html" class="recommendation-item border border-blue-900 rounded-lg bg-white overflow-hidden hover:shadow-lg transform hover:scale-105 transition" style="border-width: 3px;">
+        <img alt="Placeholder image for Company 3" class="w-full h-48 object-cover" src="Asset Company/PT Astra International.jpeg"/>
+        <div class="p-4">
+            <div class="bg-blue-500 text-white text-center py-1 rounded-full mb-2">
+                <h3 class="text-xl font-bold">PT Astra International Tbk</h3>
+            </div>
+            <p class="text-center">Perusahaan Konglomerat yang banyak bergerak di berbagai banyak sektor, seperti sektor otomotif, sektor agribisnis, dan sektor infrastruktur.</p>
+            <p class="text-blue-500 text-center font-Arial mt-2">Jakarta, Indonesia (Jl. Gaya Motor Raya No.8, Sunter II, Jakarta Utara).</p>
+        </div>
+    </a>
+    <a href="Unilever.html" class="recommendation-item border border-blue-900 rounded-lg bg-white overflow-hidden hover:shadow-lg transform hover:scale-105 transition" style="border-width: 3px;">
+        <img alt="Placeholder image for Company 3" class="w-full h-48 object-cover" src="Asset Company/PT Unilever Indonesia.jpg"/>
+        <div class="p-4">
+            <div class="bg-blue-500 text-white text-center py-1 rounded-full mb-2">
+                <h3 class="text-xl font-bold">PT Unilever Indonesia Tbk</h3>
+            </div>
+            <p class="text-center">Perusahaan yang menyediakan barang-barang konsumen yang memproduksi dan mendistribusikan produk kebutuhan sehari-hari.</p>
+            <p class="text-blue-500 text-center font-Arial mt-2">Tangerang, Banten (Jl. BSD Boulevard Barat, BSD City, Tangerang).</p>
+        </div>
+    </a>
+    <a href="BNI.html" class="recommendation-item border border-blue-900 rounded-lg bg-white overflow-hidden hover:shadow-lg transform hover:scale-105 transition" style="border-width: 3px;">
+        <img alt="Placeholder image for Company 3" class="w-full h-48 object-cover" src="Asset Company/PT Bank Negara Indonesia.jpg"/>
+        <div class="p-4">
+            <div class="bg-blue-500 text-white text-center py-1 rounded-full mb-2">
+                <h3 class="text-xl font-bold">PT Bank Negara Indonesia</h3>
+            </div>
+            <p class="text-center">Salah satu bank milik negara yang di kelola oleh negara yang menyediakan layanan perbankan lengkap baik untuk individu maupun untuk korporasi.</p>
+            <p class="text-blue-500 text-center font-Arial mt-2">Jakarta, Indonesia (Jl. Jend. Sudirman Kav. 1, Jakarta Pusat).</p>
+        </div>
+    </a>
+    <a href="Sampoerna.html" class="recommendation-item border border-blue-900 rounded-lg bg-white overflow-hidden hover:shadow-lg transform hover:scale-105 transition" style="border-width: 3px;">
+        <img alt="Placeholder image for Company 3" class="w-full h-48 object-cover" src="Asset Company/PT HM Sampoerna.jpg"/>
+        <div class="p-4">
+            <div class="bg-blue-500 text-white text-center py-1 rounded-full mb-2">
+                <h3 class="text-xl font-bold">PT HM Sampoerna Tbk</h3>
+            </div>
+            <p class="text-center">Salah satu Perusahaan tembakau terbesar dan terkemuka di Indonesia yang memproduksi berbagai macam produk dan merek rokok yang banyak diminati.</p>
+            <p class="text-blue-500 text-center font-Arial mt-2">Surabaya, Jawa Timur (Jl. Rungkut Industri Raya No.18, Surabaya).</p>
+        </div>
+    </a>
+    <a href="Indofood.html" class="recommendation-item border border-blue-900 rounded-lg bg-white overflow-hidden hover:shadow-lg transform hover:scale-105 transition" style="border-width: 3px;">
+        <img alt="Placeholder image for Company 3" class="w-full h-48 object-cover" src="Asset Company/PT Indofood Sukses Makmur.jpg"/>
+        <div class="p-4">
+            <div class="bg-blue-500 text-white text-center py-1 rounded-full mb-2">
+                <h3 class="text-xl font-bold">PT Indofood</h3>
+            </div>
+            <p class="text-center">Perusahaan makanan terbesar di Indonesia yang banyak memproduksi berbagai olahan produk pangan, termasuk mi instan dan produk olahan lainnya.</p>
+            <p class="text-blue-500 text-center font-Arial mt-2">Jakarta, Indonesia (Jl. Sudirman Plaza, Indofood Tower, Jakarta).</p>
+        </div>
+    </a>
+    <a href="Gojek.html" class="recommendation-item border border-blue-900 rounded-lg bg-white overflow-hidden hover:shadow-lg transform hover:scale-105 transition" style="border-width: 3px;">
+        <img alt="Placeholder image for Company 3" class="w-full h-48 object-cover" src="Asset Company/PT GoTo Gojek Tokopedia.jpg"/>
+        <div class="p-4">
+            <div class="bg-blue-500 text-white text-center py-1 rounded-full mb-2">
+                <h3 class="text-xl font-bold">PT GoTo Gojek</h3>
+            </div>
+            <p class="text-center">Perusahaan teknologi hasil merger antara Gojek dan Tokopedia yang menyediakan layanan transportasi, logistik, dan e-commerce.</p>
+            <p class="text-blue-500 text-center font-Arial mt-2">Jakarta, Indonesia (Pasaraya Blok M, Jakarta Selatan).</p>
+        </div>
+    </a>
+    <a href="Mayora.html" class="recommendation-item border border-blue-900 rounded-lg bg-white overflow-hidden hover:shadow-lg transform hover:scale-105 transition" style="border-width: 3px;">
+        <img alt="Placeholder image for Company 3" class="w-full h-48 object-cover" src="Asset Company/PT Mayora Indah Tbk.jpg"/>
+        <div class="p-4">
+            <div class="bg-blue-500 text-white text-center py-1 rounded-full mb-2">
+                <h3 class="text-xl font-bold">PT Mayora Indah Tbk</h3>
+            </div>
+            <p class="text-center">Perusahaan yang bergerak di bidang produksi makanan dan minuman, dikenal dengan produk seperti biskuit dan kopi instan.</p>
+            <p class="text-blue-500 text-center font-Arial mt-2">Jakarta, Indonesia (Jl. Tomang Raya No.21-23, Jakarta Barat).</p>
+        </div>
+    </a>
+    <a href="BSI.html" class="recommendation-item border border-blue-900 rounded-lg bg-white overflow-hidden hover:shadow-lg transform hover:scale-105 transition" style="border-width: 3px;">
+        <img alt="Placeholder image for Company 3" class="w-full h-48 object-cover" src="Asset Company/PT Bank Syariah Indonesia Tbk.jpg"/>
+        <div class="p-4">
+            <div class="bg-blue-500 text-white text-center py-1 rounded-full mb-2">
+                <h3 class="text-xl font-bold">PT Bank Syariah Indonesia</h3>
+            </div>
+            <p class="text-center">Bank syariah terbesar yang ada di Indonesia yang menawarkan sebuah layanan perbankan yang sesuai prinsip syariah.</p>
+            <p class="text-blue-500 text-center font-Arial mt-2">Jakarta, Indonesia (Jl. Abdul Muis No.2-4, Jakarta Pusat).</p>
+        </div>
+    </a>
+    <a href="Bukalapak.html" class="recommendation-item border border-blue-900 rounded-lg bg-white overflow-hidden hover:shadow-lg transform hover:scale-105 transition" style="border-width: 3px;">
+        <img alt="Placeholder image for Company 3" class="w-full h-48 object-cover" src="Asset Company/PT Bukalapak.jpeg"/>
+        <div class="p-4">
+            <div class="bg-blue-500 text-white text-center py-1 rounded-full mb-2">
+                <h3 class="text-xl font-bold">PT Bukalapak.com Tbk</h3>
+            </div>
+            <p class="text-center">Platform e-commerce yang menyediakan layanan jual beli online bagi pelaku usaha kecil dan menengah.</p>
+            <p class="text-blue-500 text-center font-Arial mt-2">Jakarta, Indonesia (Jl. Kemang Timur No.22, Jakarta Selatan).</p>
+        </div>
+    </a>
+    <a href="Freeport.html" class="recommendation-item border border-blue-900 rounded-lg bg-white overflow-hidden hover:shadow-lg transform hover:scale-105 transition" style="border-width: 3px;">
+        <img alt="Placeholder image for Company 3" class="w-full h-48 object-cover" src="Asset Company/PT Freeport Indonesia.jpg"/>
+        <div class="p-4">
+            <div class="bg-blue-500 text-white text-center py-1 rounded-full mb-2">
+                <h3 class="text-xl font-bold">PT Freeport Indonesia</h3>
+            </div>
+            <p class="text-center">Perusahaan pertambangan yang beroperasi di Papua, fokus pada eksplorasi dan produksi tembaga dan emas.</p>
+            <p class="text-blue-500 text-center font-Arial mt-2">Papua, Indonesia (Tembagapura, Kabupaten Mimika).</p>
+        </div>
+    </a>
+    <a href="BTN.html" class="recommendation-item border border-blue-900 rounded-lg bg-white overflow-hidden hover:shadow-lg transform hover:scale-105 transition" style="border-width: 3px;">
+        <img alt="Placeholder image for Company 3" class="w-full h-48 object-cover" src="Asset Company/PT Bank Tabungan Negara.png"/>
+        <div class="p-4">
+            <div class="bg-blue-500 text-white text-center py-1 rounded-full mb-2">
+                <h3 class="text-xl font-bold">PT Bank Tabungan Negara</h3>
+            </div>
+            <p class="text-center">Bank milik negara yang fokus pada pembiayaan perumahan dan layanan perbankan lainnya.</p>
+            <p class="text-blue-500 text-center font-Arial mt-2">Jakarta, Indonesia (Menara Bank BTN, Jl. Gajah Mada No.1, Jakarta Pusat).</p>
+        </div>
+    </a>
+    <a href="Semen.html" class="recommendation-item border border-blue-900 rounded-lg bg-white overflow-hidden hover:shadow-lg transform hover:scale-105 transition" style="border-width: 3px;">
+        <img alt="Placeholder image for Company 3" class="w-full h-48 object-cover" src="Asset Company/PT Semen Indonesia.jpg"/>
+        <div class="p-4">
+            <div class="bg-blue-500 text-white text-center py-1 rounded-full mb-2">
+                <h3 class="text-xl font-bold">PT Semen Indonesia</h3>
+            </div>
+            <p class="text-center">Produsen semen terbesar yang ada di Indonesia yang menyediakan bahan-bahan bangunan untuk kebutuhan konstruksi.</p>
+            <p class="text-blue-500 text-center font-Arial mt-2">Gresik, Jawa Timur (Jl. Veteran, Gresik).</p>
+        </div>
+    </a>
+    <a href="Garuda.html" class="recommendation-item border border-blue-900 rounded-lg bg-white overflow-hidden hover:shadow-lg transform hover:scale-105 transition" style="border-width: 3px;">
+        <img alt="Placeholder image for Company 3" class="w-full h-48 object-cover" src="Asset Company/PT Garuda Indonesia.jpg"/>
+        <div class="p-4">
+            <div class="bg-blue-500 text-white text-center py-1 rounded-full mb-2">
+                <h3 class="text-xl font-bold">PT Garuda Indonesia</h3>
+            </div>
+            <p class="text-center">Maskapai penerbangan nasional yang menawarkan layanan penerbangan domestik dan internasional.</p>
+            <p class="text-blue-500 text-center font-Arial mt-2">Tangerang, Banten (Bandara Soekarno-Hatta, Cengkareng).</p>
+        </div>
+    </a>
+    <a href="PLN.html" class="recommendation-item border border-blue-900 rounded-lg bg-white overflow-hidden hover:shadow-lg transform hover:scale-105 transition" style="border-width: 3px;">
+        <img alt="Placeholder image for Company 3" class="w-full h-48 object-cover" src="Asset Company/PT PLN.jpg"/>
+        <div class="p-4">
+            <div class="bg-blue-500 text-white text-center py-1 rounded-full mb-2">
+                <h3 class="text-xl font-bold">PT PLN (Persero)</h3>
+            </div>
+            <p class="text-center">Perusahaan listrik milik negara yang bertanggung jawab atas penyediaan dan distribusi listrik di Indonesia.</p>
+            <p class="text-blue-500 text-center font-Arial mt-2">Jakarta, Indonesia (Jl. Trunojoyo Blok M I No.135, Jakarta Selatan).</p>
+        </div>
+    </a>
+    <a href="Farma.html" class="recommendation-item border border-blue-900 rounded-lg bg-white overflow-hidden hover:shadow-lg transform hover:scale-105 transition" style="border-width: 3px;">
+        <img alt="Placeholder image for Company 3" class="w-full h-48 object-cover" src="Asset Company/PT Kalbe Farma Tbk.jpg"/>
+        <div class="p-4">
+            <div class="bg-blue-500 text-white text-center py-1 rounded-full mb-2">
+                <h3 class="text-xl font-bold">PT Kalbe Farma Tbk</h3>
+            </div>
+            <p class="text-center">Perusahaan farmasi terkemuka di indonesia yang banyak memproduksi obat-obatan dan juga produk kesehatan lainnya.</p>
+            <p class="text-blue-500 text-center font-Arial mt-2">Jakarta, Indonesia (Jl. Let. Jend. Suprapto Kav. IV, Jakarta Utara).</p>
+        </div>
+    </a>
+    <a href="Danone.html" class="recommendation-item border border-blue-900 rounded-lg bg-white overflow-hidden hover:shadow-lg transform hover:scale-105 transition" style="border-width: 3px;">
+        <img alt="Placeholder image for Company 3" class="w-full h-48 object-cover" src="Asset Company/PT Danone Indonesia.jpeg"/>
+        <div class="p-4">
+            <div class="bg-blue-500 text-white text-center py-1 rounded-full mb-2">
+                <h3 class="text-xl font-bold">PT Danone Indonesia</h3>
+            </div>
+            <p class="text-center">Salah satu Perusahaan terbesar di indonesia yang bergerak di bidang produksi makanan dan minuman, dikenal luas dengan produk susu dan air mineralnya.</p>
+            <p class="text-blue-500 text-center font-Arial mt-2">Jakarta, Indonesia (Cyber 2 Tower, Kuningan, Jakarta Selatan).</p>
+        </div>
+    </a>
+    <a href="Lion.html" class="recommendation-item border border-blue-900 rounded-lg bg-white overflow-hidden hover:shadow-lg transform hover:scale-105 transition" style="border-width: 3px;">
+        <img alt="Placeholder image for Company 3" class="w-full h-48 object-cover" src="Asset Company/PT Lion Super Indo.jpg"/>
+        <div class="p-4">
+            <div class="bg-blue-500 text-white text-center py-1 rounded-full mb-2">
+                <h3 class="text-xl font-bold">PT Lion Super Indo</h3>
+            </div>
+            <p class="text-center">Jaringan supermarket yang menyediakan berbagai produk kebutuhan sehari-hari dengan harga terjangkau.</p>
+            <p class="text-blue-500 text-center font-Arial mt-2">Jakarta, Indonesia (Jl. Danau Sunter Utara Blok O3 No.10, Jakarta Utara).</p>
+        </div>
+    </a>
+    <a href="Nestle.html" class="recommendation-item border border-blue-900 rounded-lg bg-white overflow-hidden hover:shadow-lg transform hover:scale-105 transition" style="border-width: 3px;">
+        <img alt="Placeholder image for Company 3" class="w-full h-48 object-cover" src="Asset Company/PT Nestle Indonesia.jpg"/>
+        <div class="p-4">
+            <div class="bg-blue-500 text-white text-center py-1 rounded-full mb-2">
+                <h3 class="text-xl font-bold">PT Nestlé Indonesia</h3>
+            </div>
+            <p class="text-center">Perusahaan makanan dan minuman global yang memproduksi berbagai produk konsumen di Indonesia.</p>
+            <p class="text-blue-500 text-center font-Arial mt-2">Jakarta, Indonesia (Perkantoran Hijau Arkadia, Tower B, Jakarta Selatan).</p>
+        </div>
+    </a>
+    <a href="Samsung.html" class="recommendation-item border border-blue-900 rounded-lg bg-white overflow-hidden hover:shadow-lg transform hover:scale-105 transition" style="border-width: 3px;">
+        <img alt="Placeholder image for Company 3" class="w-full h-48 object-cover" src="Asset Company/PT Samsung Electronics Indonesia.jpg"/>
+        <div class="p-4">
+            <div class="bg-blue-500 text-white text-center py-1 rounded-full mb-2">
+                <h3 class="text-xl font-bold">PT Samsung Electronics</h3>
+            </div>
+            <p class="text-center">Perusahaan elektronik multinasional yang memproduksi dan mendistribusikan produk elektronik, seperti ponsel dan peralatan rumah tangga.</p>
+            <p class="text-blue-500 text-center font-Arial mt-2">Cikarang, Jawa Barat (Samsung Complex, Cikarang, Bekasi).</p>
+        </div>
+    </a>
+    <a href="Chevron.html" class="recommendation-item border border-blue-900 rounded-lg bg-white overflow-hidden hover:shadow-lg transform hover:scale-105 transition" style="border-width: 3px;">
+        <img alt="Placeholder image for Company 3" class="w-full h-48 object-cover" src="Asset Company/PT Chevron Pacific Indonesia.jpg"/>
+        <div class="p-4">
+            <div class="bg-blue-500 text-white text-center py-1 rounded-full mb-2">
+                <h3 class="text-xl font-bold">PT Chevron Pacific</h3>
+            </div>
+            <p class="text-center">Salah satu Perusahaan minyak dan gas asal Amerika Serikat yang beroperasi di Indonesia, perusahaan ini fokus pada eksplorasi dan produksi energi.</p>
+            <p class="text-blue-500 text-center font-Arial mt-2">Pekanbaru, Riau (Rumbai, Pekanbaru).</p>
+        </div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body>
+</html>
